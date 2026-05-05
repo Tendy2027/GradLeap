@@ -388,6 +388,19 @@
 
   .cta-note { color: var(--white-50); font-size: 0.8rem; }
 
+  .form-loading {
+    margin: 1.5rem auto 1rem;
+    max-width: 700px;
+    color: var(--white-80);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .form-loading strong { color: var(--teal); }
+
   /* ── FOOTER ── */
   footer {
     padding: 3rem 4rem;
@@ -437,13 +450,13 @@
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
 
-  <div class="hero-badge">🎓 Launching 2026 · Built for SA Students</div>
+  <div class="hero-badge">🎓 Launching 2026/27 · Built for SA Students</div>
 
   <h1><span class="grad">Grad</span>Leap</h1>
   <p class="hero-tagline">Get Ready. Get Connected. Get Ahead.</p>
 
   <p class="hero-desc">
-    The all-in-one platform that guides high school leavers through the transition to university or college — from accommodation and course planning to bursaries, study resources, and finding your community before day one.
+    The all-in-one platform that guides high school leavers through the transition to university or college - from accommodation and course planning to bursaries, study resources, and finding your community before day one.
   </p>
 
   <div class="hero-actions">
@@ -493,7 +506,7 @@
       <div class="feature-card">
         <div class="feature-icon">🏠</div>
         <div class="feature-title">Accommodation Finder</div>
-        <p class="feature-desc">Browse verified accommodation options near your institution. See exact costs, distance from campus, transport routes, and what to budget for — no surprises.</p>
+        <p class="feature-desc">Browse verified accommodation options near your institution. See exact costs, distance from campus, transport routes, and what to budget for, to avoid any surprises.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">📖</div>
@@ -503,7 +516,7 @@
       <div class="feature-card">
         <div class="feature-icon">💰</div>
         <div class="feature-title">Bursary & Scholarship Matcher</div>
-        <p class="feature-desc">Discover funding opportunities you qualify for. We help you find bursaries, track deadlines, and understand your options — whether you're fully funded or managing debt.</p>
+        <p class="feature-desc">Discover funding opportunities you qualify for. We help you find bursaries, track deadlines, and understand your options - whether you're fully funded or managing debt.</p>
       </div>
       <div class="feature-card">
         <div class="feature-icon">🤝</div>
@@ -518,7 +531,7 @@
       <div class="feature-card">
         <div class="feature-icon">📋</div>
         <div class="feature-title">Fee & Budget Planner</div>
-        <p class="feature-desc">Understand the full cost of your qualification — tuition, registration, accommodation, and transport — so you can plan financially before you commit.</p>
+        <p class="feature-desc">Understand the full cost of your qualification - tuition, registration, accommodation, and transport - so you can plan financially before you commit.</p>
       </div>
     </div>
   </div>
@@ -538,7 +551,7 @@
       <div class="step">
         <div class="step-num">02</div>
         <div class="step-title">Explore Your Options</div>
-        <p class="step-desc">Browse accommodation, funding, study resources, and campus info — all in one place, filtered for you.</p>
+        <p class="step-desc">Browse accommodation, funding, study resources, and campus info - all in one place, filtered for you.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
@@ -562,7 +575,7 @@
         <p class="section-label">Community</p>
         <h2 class="section-title">You're not alone<br>in this leap</h2>
         <p class="section-desc" style="margin-bottom: 1.5rem;">
-          Moving to a new city for studies is exciting — and isolating. GradLeap connects you with fellow incoming students, current students who've been where you are, and a support network that walks with you through your entire first year.
+          Moving to a new city for studies is exciting - and isolating. GradLeap connects you with fellow incoming students, current students who've been where you are, and a support network that walks with you through your entire first year.
         </p>
         <ul style="list-style:none; display:flex; flex-direction:column; gap:0.75rem;">
           <li style="display:flex;align-items:center;gap:0.75rem;color:var(--white-80);font-size:0.95rem">
@@ -589,10 +602,10 @@
         </div>
         <div>
           <div class="chat-author">Lerato K. · Incoming Student</div>
-          <div class="chat-bubble them">Same here! I found accommodation in Braam through GradLeap — only R4 500/month, 10 min walk 🎉</div>
+          <div class="chat-bubble them">Same here! I found accommodation in Braam through GradLeap - only R4 500/month, 10 min walk 🎉</div>
         </div>
         <div>
-          <div class="chat-bubble me">Wait that's so much better than the res prices. Sending it to my parents now!</div>
+          <div class="chat-bubble me">Wait that's so much better than the campus res prices. Sending it to my parents now!</div>
         </div>
       </div>
     </div>
@@ -610,7 +623,7 @@
       <div class="finance-card">
         <div class="finance-tag">Bursaries</div>
         <div class="finance-title">Find & Apply for Funding</div>
-        <p class="finance-desc">We surface bursaries and scholarships matched to your field of study, institution, and background — so you never miss an opportunity.</p>
+        <p class="finance-desc">We surface bursaries and scholarships matched to your field of study, institution, and background - so you never miss an opportunity.</p>
       </div>
       <div class="finance-card">
         <div class="finance-tag">Cost Transparency</div>
@@ -631,16 +644,34 @@
   <div class="container" style="max-width:700px">
     <p class="section-label" style="text-align:center">Early Access</p>
     <h2>Be first to<br><span style="color:var(--teal)">leap forward</span></h2>
-    <p>Join the waitlist and be notified the moment GradLeap launches. We're building this for students like you — help us shape it.</p>
+    <p>Join the waitlist and be notified the moment GradLeap launches. We're building this for students like you - help us shape it.</p>
 
+    <div id="form-loading-message" class="form-loading">
+      <strong>NOTE: </strong> If the form is not showing yet, please wait a moment while the Google Form opens . If the form does not appear, send your email to <a href="mailto:gradleap101@gmail.com" style="color: var(--teal); text-decoration: underline;">gradleap101@gmail.com</a> and we will add you to the list.
+    </div>
     <div style="max-width: 700px; margin: 0 auto; width: 100%;">
-      <iframe src="https://forms.gle/q1XS741mwbmvXerj9" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0" style="border: none; border-radius: 12px; background: white;"></iframe>
+      <iframe id="waitlist-form" src="https://forms.gle/q1XS741mwbmvXerj9" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0" style="border: none; border-radius: 12px; background: white;"></iframe>
     </div>
     <p class="cta-note">No spam. Just the launch notification and early access. 🎓</p>
   </div>
 </section>
 
 <!-- FOOTER -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const message = document.getElementById('form-loading-message');
+    const iframe = document.getElementById('waitlist-form');
+    if (!message || !iframe) return;
+
+    iframe.addEventListener('load', function () {
+      message.textContent = 'The waitlist form is ready. If it still does not appear, please email gradleap101@gmail.com.';
+    });
+
+    iframe.addEventListener('error', function () {
+      message.innerHTML = 'The waitlist form could not load. Please send your email to <a href="mailto:gradleap101@gmail.com" style="color: var(--teal); text-decoration: underline;">gradleap101@gmail.com</a> to be added manually.';
+    });
+  });
+</script>
 <footer>
   <div>
     <div class="footer-logo">Grad<span>Leap</span></div>
@@ -648,7 +679,7 @@
   </div>
   <div class="footer-links">
     <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="#waitlist">Contact</a>
     <a href="#">Privacy</a>
     <a href="#">Terms</a>
   </div>
