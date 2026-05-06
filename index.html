@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GradLeap – Get Ready. Get Connected. Get Ahead.</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #040f2a;
+    --navy-mid: #071630;
+    --navy-card: #0a1d3d;
+    --teal: #00d4b8;
+    --teal-soft: #0ff0d8;
+    --teal-dim: rgba(0,212,184,0.15);
+    --teal-glow: rgba(0,212,184,0.3);
+    --white: #ffffff;
+    --white-80: rgba(255,255,255,0.8);
+    --white-50: rgba(255,255,255,0.5);
+    --white-20: rgba(255,255,255,0.12);
+    --white-10: rgba(255,255,255,0.06);
+    --border: rgba(0,212,184,0.2);
+    --font-head: 'Sora', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 4rem;
+    background: rgba(4,15,42,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--font-head);
+    font-weight: 800; font-size: 1.4rem;
+    color: var(--white);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+
+  .nav-logo .dot { color: var(--teal); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--white-80); text-decoration: none;
+    font-size: 0.9rem; font-weight: 400; letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+
+  .nav-cta {
+    background: var(--teal); color: var(--navy);
+    padding: 0.55rem 1.4rem; border-radius: 50px;
+    font-family: var(--font-head); font-weight: 700; font-size: 0.85rem;
+    text-decoration: none; transition: opacity 0.2s, transform 0.2s;
+    white-space: nowrap;
+  }
+  .nav-cta:hover { opacity: 0.9; transform: scale(1.03); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,184,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 80%, rgba(0,100,200,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 30% 30% at 10% 60%, rgba(0,212,184,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,212,184,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,212,184,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 40%, transparent 100%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--teal-dim); border: 1px solid var(--border);
+    color: var(--teal); padding: 0.4rem 1rem;
+    border-radius: 50px; font-size: 0.8rem; font-weight: 500;
+    margin-bottom: 2rem; letter-spacing: 0.05em;
+    animation: fadeDown 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: ''; width: 6px; height: 6px;
+    background: var(--teal); border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(1.4)} }
+  @keyframes fadeDown { from{opacity:0;transform:translateY(-16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeIn { from{opacity:0} to{opacity:1} }
+
+  .hero h1 {
+    font-family: var(--font-head);
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800; line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    animation: fadeUp 0.7s 0.1s ease both;
+  }
+
+  .hero h1 .grad { color: var(--teal); }
+
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--teal);
+    font-weight: 300; letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.7s 0.2s ease both;
+  }
+
+  .hero-desc {
+    max-width: 640px;
+    color: var(--white-80);
+    font-size: 1.1rem; line-height: 1.8;
+    margin: 0 auto 2.5rem;
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .hero-actions {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp 0.7s 0.4s ease both;
+    margin-bottom: 4rem;
+  }
+
+  .btn-primary {
+    background: var(--teal); color: var(--navy);
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-family: var(--font-head); font-weight: 700; font-size: 1rem;
+    text-decoration: none; transition: all 0.2s;
+    box-shadow: 0 0 30px var(--teal-glow);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 50px var(--teal-glow); }
+
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 0.85rem 2rem; border-radius: 50px;
+    font-family: var(--font-head); font-weight: 600; font-size: 1rem;
+    text-decoration: none; border: 1px solid var(--white-20);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeIn 0.8s 0.6s ease both;
+  }
+
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: var(--font-head); font-size: 2rem; font-weight: 800;
+    color: var(--teal);
+  }
+  .stat-label { font-size: 0.8rem; color: var(--white-50); letter-spacing: 0.05em; }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--teal); font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-head); font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800; line-height: 1.15; letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--white-80); max-width: 560px; font-size: 1.05rem; line-height: 1.8; }
+
+  /* ── CHALLENGES STRIP ── */
+  .challenges {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 3rem 2rem;
+    overflow: hidden;
+  }
+
+  .challenges-label {
+    text-align: center; color: var(--white-50);
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .challenges-grid {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    justify-content: center;
+  }
+
+  .challenge-chip {
+    background: var(--white-10); border: 1px solid var(--white-20);
+    padding: 0.5rem 1.2rem; border-radius: 50px;
+    font-size: 0.85rem; color: var(--white-80);
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: all 0.2s;
+  }
+  .challenge-chip:hover { border-color: var(--teal); color: var(--teal); }
+  .challenge-chip .icon { font-size: 1rem; }
+
+  /* ── FEATURES ── */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .feature-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 2rem;
+    transition: all 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--teal), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-4px); border-color: var(--teal); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: var(--teal-dim); border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1.25rem;
+    border: 1px solid var(--border);
+  }
+
+  .feature-title {
+    font-family: var(--font-head); font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+  .feature-desc { color: var(--white-80); font-size: 0.9rem; line-height: 1.7; }
+
+  /* ── HOW IT WORKS ── */
+  .how-bg { background: var(--navy-mid); }
+
+  .steps {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem; margin-top: 3rem; position: relative;
+  }
+
+  .step {
+    text-align: center; padding: 2rem 1.5rem;
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+
+  .step-num {
+    font-family: var(--font-head); font-size: 3rem; font-weight: 800;
+    color: var(--teal-dim); line-height: 1;
+    margin-bottom: 1rem;
+    -webkit-text-stroke: 1px var(--teal);
+    color: transparent;
+  }
+
+  .step-title { font-family: var(--font-head); font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem; }
+  .step-desc { color: var(--white-50); font-size: 0.85rem; line-height: 1.6; }
+
+  /* ── COMMUNITY ── */
+  .community-split {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;
+    align-items: center; margin-top: 0;
+  }
+
+  .community-visual {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+
+  .chat-bubble {
+    padding: 0.75rem 1rem; border-radius: 12px;
+    font-size: 0.85rem; max-width: 80%;
+    line-height: 1.5;
+  }
+  .chat-bubble.them {
+    background: var(--white-10); color: var(--white-80);
+    border-radius: 12px 12px 12px 2px; align-self: flex-start;
+  }
+  .chat-bubble.me {
+    background: var(--teal); color: var(--navy);
+    border-radius: 12px 12px 2px 12px; align-self: flex-end;
+    font-weight: 500;
+  }
+
+  .chat-author { font-size: 0.7rem; color: var(--white-50); margin-bottom: 0.2rem; }
+
+  /* ── BURSARY / FINANCE ── */
+  .finance-cards {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .finance-card {
+    background: var(--navy-card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.75rem;
+    transition: all 0.2s;
+  }
+  .finance-card:hover { border-color: var(--teal); }
+
+  .finance-tag {
+    display: inline-block;
+    background: var(--teal-dim); color: var(--teal);
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em;
+    padding: 0.25rem 0.75rem; border-radius: 50px;
+    margin-bottom: 1rem; text-transform: uppercase;
+    border: 1px solid var(--border);
+  }
+
+  .finance-title { font-family: var(--font-head); font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .finance-desc { color: var(--white-80); font-size: 0.88rem; line-height: 1.7; }
+
+  /* ── CTA ── */
+  .cta-section {
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0,212,184,0.1) 0%, rgba(0,100,200,0.05) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 6rem 2rem;
+  }
+
+  .cta-section h2 {
+    font-family: var(--font-head); font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800; letter-spacing: -0.02em;
+    margin-bottom: 1rem; line-height: 1.1;
+  }
+
+  .cta-section p { color: var(--white-80); font-size: 1.1rem; margin-bottom: 2.5rem; }
+
+  .cta-email {
+    display: flex; gap: 0.75rem; max-width: 480px;
+    margin: 0 auto 1rem; flex-wrap: wrap; justify-content: center;
+  }
+
+  .cta-email input {
+    flex: 1; min-width: 240px;
+    background: var(--white-10); border: 1px solid var(--border);
+    color: var(--white); padding: 0.85rem 1.25rem;
+    border-radius: 50px; font-family: var(--font-body); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+  }
+  .cta-email input::placeholder { color: var(--white-50); }
+  .cta-email input:focus { border-color: var(--teal); }
+  .cta-email button {
+    background: var(--teal); color: var(--navy);
+    padding: 0.85rem 1.75rem; border-radius: 50px; border: none;
+    font-family: var(--font-head); font-weight: 700; font-size: 0.95rem;
+    cursor: pointer; transition: all 0.2s;
+    box-shadow: 0 0 20px var(--teal-glow);
+  }
+  .cta-email button:hover { transform: scale(1.04); }
+
+  .cta-note { color: var(--white-50); font-size: 0.8rem; }
+
+  .form-loading {
+    margin: 1.5rem auto 1rem;
+    max-width: 700px;
+    color: var(--white-80);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .form-loading strong { color: var(--teal); }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--white-20);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-head); font-weight: 800; font-size: 1.1rem;
+  }
+  .footer-logo span { color: var(--teal); }
+
+  .footer-tagline { color: var(--white-50); font-size: 0.8rem; margin-top: 0.2rem; }
+
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--white-50); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--teal); }
+
+  .footer-copy { color: var(--white-50); font-size: 0.8rem; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .community-split { grid-template-columns: 1fr; }
+    footer { flex-direction: column; align-items: flex-start; padding: 2rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Grad<span class="dot">Leap</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#finance">Funding</a></li>
+  </ul>
+  <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-badge">🎓 Launching 2026/27 · Built for SA Students</div>
+
+  <h1><span class="grad">Grad</span>Leap</h1>
+  <p class="hero-tagline">Get Ready. Get Connected. Get Ahead.</p>
+
+  <p class="hero-desc">
+    The all-in-one platform that guides high school leavers through the transition to university or college - from accommodation and course planning to bursaries, study resources, and finding your community before day one.
+  </p>
+
+  <div class="hero-actions">
+    <a href="#waitlist" class="btn-primary">Join the Waitlist</a>
+    <a href="#features" class="btn-outline">Explore the Platform</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Big Challenges Solved</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Peers to Connect With</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Nasty Surprises</div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<div class="challenges">
+  <p class="challenges-label">Common challenges we eliminate</p>
+  <div class="challenges-grid">
+    <div class="challenge-chip"><span class="icon">🏠</span> Finding suitable accommodation</div>
+    <div class="challenge-chip"><span class="icon">💸</span> Unexpected tuition costs</div>
+    <div class="challenge-chip"><span class="icon">🗺️</span> Unfamiliar campus environments</div>
+    <div class="challenge-chip"><span class="icon">😟</span> Isolation & social anxiety</div>
+    <div class="challenge-chip"><span class="icon">📚</span> Unprepared for coursework</div>
+    <div class="challenge-chip"><span class="icon">🎓</span> Missing bursary deadlines</div>
+    <div class="challenge-chip"><span class="icon">🚌</span> Transport planning</div>
+    <div class="challenge-chip"><span class="icon">❓</span> Not knowing what to expect</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <p class="section-label">Platform Features</p>
+    <h2 class="section-title">Everything you need<br>before you arrive</h2>
+    <p class="section-desc">GradLeap brings together all the information, tools, and people you need to start your tertiary journey with confidence.</p>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🏠</div>
+        <div class="feature-title">Accommodation Finder</div>
+        <p class="feature-desc">Browse verified accommodation options near your institution. See exact costs, distance from campus, transport routes, and what to budget for, to avoid any surprises.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📖</div>
+        <div class="feature-title">First-Year Study Hub</div>
+        <p class="feature-desc">Access curated study resources tailored to your diploma or degree. Know what to expect in your first semester and hit the ground running.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <div class="feature-title">Bursary & Scholarship Matcher</div>
+        <p class="feature-desc">Discover funding opportunities you qualify for. We help you find bursaries, track deadlines, and understand your options - whether you're fully funded or managing debt.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <div class="feature-title">Student Community</div>
+        <p class="feature-desc">Connect with other incoming students, current students, and alumni at your institution. You'll never feel alone on your first day again.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <div class="feature-title">Campus & Course Guide</div>
+        <p class="feature-desc">Get a head start on navigating your campus. Learn what your course involves, who teaches it, and what past students say about year one.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📋</div>
+        <div class="feature-title">Fee & Budget Planner</div>
+        <p class="feature-desc">Understand the full cost of your qualification - tuition, registration, accommodation, and transport - so you can plan financially before you commit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how" class="how-bg">
+  <div class="container">
+    <p class="section-label">How It Works</p>
+    <h2 class="section-title">Three steps to a<br>confident start</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Create Your Profile</div>
+        <p class="step-desc">Tell us your institution, course, and what you need help with. We personalise everything for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Explore Your Options</div>
+        <p class="step-desc">Browse accommodation, funding, study resources, and campus info - all in one place, filtered for you.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Connect & Prepare</div>
+        <p class="step-desc">Join your institution's community, find your peers, and arrive on campus feeling ready.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Thrive All Year</div>
+        <p class="step-desc">Keep using GradLeap through your first year for ongoing resources, support, and community.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="container">
+    <div class="community-split">
+      <div>
+        <p class="section-label">Community</p>
+        <h2 class="section-title">You're not alone<br>in this leap</h2>
+        <p class="section-desc" style="margin-bottom: 1.5rem;">
+          Moving to a new city for studies is exciting - and isolating. GradLeap connects you with fellow incoming students, current students who've been where you are, and a support network that walks with you through your entire first year.
+        </p>
+        <ul style="list-style:none; display:flex; flex-direction:column; gap:0.75rem;">
+          <li style="display:flex;align-items:center;gap:0.75rem;color:var(--white-80);font-size:0.95rem">
+            <span style="color:var(--teal);font-size:1.2rem">✓</span> Institution-specific group chats
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;color:var(--white-80);font-size:0.95rem">
+            <span style="color:var(--teal);font-size:1.2rem">✓</span> Peer mentorship from senior students
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;color:var(--white-80);font-size:0.95rem">
+            <span style="color:var(--teal);font-size:1.2rem">✓</span> Course-specific forums & study groups
+          </li>
+          <li style="display:flex;align-items:center;gap:0.75rem;color:var(--white-80);font-size:0.95rem">
+            <span style="color:var(--teal);font-size:1.2rem">✓</span> Safe space to ask any question
+          </li>
+        </ul>
+      </div>
+      <div class="community-visual">
+        <div>
+          <div class="chat-author">Thabo M. · 2nd Year Engineering</div>
+          <div class="chat-bubble them">Hey! Are you also doing BSc Eng at Wits next year? I can show you around the campus before orientation 🙌</div>
+        </div>
+        <div>
+          <div class="chat-bubble me">Yes!! That would be amazing, I have no idea where anything is 😅</div>
+        </div>
+        <div>
+          <div class="chat-author">Lerato K. · Incoming Student</div>
+          <div class="chat-bubble them">Same here! I found accommodation in Braam through GradLeap - only R4 500/month, 10 min walk 🎉</div>
+        </div>
+        <div>
+          <div class="chat-bubble me">Wait that's so much better than the campus res prices. Sending it to my parents now!</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINANCE -->
+<section id="finance" style="background: var(--navy-mid);">
+  <div class="container">
+    <p class="section-label">Funding & Finance</p>
+    <h2 class="section-title">Don't let money be<br>the reason you stop</h2>
+    <p class="section-desc">We help you understand every cost upfront and find every rand of funding available to you.</p>
+
+    <div class="finance-cards">
+      <div class="finance-card">
+        <div class="finance-tag">Bursaries</div>
+        <div class="finance-title">Find & Apply for Funding</div>
+        <p class="finance-desc">We surface bursaries and scholarships matched to your field of study, institution, and background - so you never miss an opportunity.</p>
+      </div>
+      <div class="finance-card">
+        <div class="finance-tag">Cost Transparency</div>
+        <div class="finance-title">Full Cost Breakdown</div>
+        <p class="finance-desc">See tuition, registration, and accommodation costs before you commit. No hidden fees. No surprise debt you weren't prepared for.</p>
+      </div>
+      <div class="finance-card">
+        <div class="finance-tag">Debt Guidance</div>
+        <div class="finance-title">Managing Student Loans</div>
+        <p class="finance-desc">If loans are part of your plan, we help you understand NSFAS and private loan options, repayment terms, and how to stay on top of it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA / WAITLIST -->
+<section class="cta-section" id="waitlist">
+  <div class="container" style="max-width:700px">
+    <p class="section-label" style="text-align:center">Early Access</p>
+    <h2>Be first to<br><span style="color:var(--teal)">leap forward</span></h2>
+    <p>Join the waitlist and be notified the moment GradLeap launches. We're building this for students like you - help us shape it.</p>
+
+    <div id="form-loading-message" class="form-loading">
+      <strong>NOTE: </strong> If the form is not showing yet, please wait a moment while the Google Form opens . If the form does not appear, send your email to <a href="mailto:gradleap101@gmail.com" style="color: var(--teal); text-decoration: underline;">gradleap101@gmail.com</a> and we will add you to the list.
+    </div>
+    <div style="max-width: 700px; margin: 0 auto; width: 100%;">
+      <iframe id="waitlist-form" src="https://forms.gle/q1XS741mwbmvXerj9" width="100%" height="650" frameborder="0" marginheight="0" marginwidth="0" style="border: none; border-radius: 12px; background: white;"></iframe>
+    </div>
+    <p class="cta-note">No spam. Just the launch notification and early access. 🎓</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const message = document.getElementById('form-loading-message');
+    const iframe = document.getElementById('waitlist-form');
+    if (!message || !iframe) return;
+
+    iframe.addEventListener('load', function () {
+      message.innerHTML = 'The waitlist form is ready. If it still does not appear, please email <a href="mailto:gradleap101@gmail.com" style="color: var(--teal); text-decoration: underline;">gradleap101@gmail.com</a>.';
+    });
+
+    iframe.addEventListener('error', function () {
+      message.innerHTML = 'The waitlist form could not load. Please send your email to <a href="mailto:gradleap101@gmail.com" style="color: var(--teal); text-decoration: underline;">gradleap101@gmail.com</a> to be added manually.';
+    });
+  });
+</script>
+<footer>
+  <div>
+    <div class="footer-logo">Grad<span>Leap</span></div>
+    <div class="footer-tagline">Get Ready. Get Connected. Get Ahead.</div>
+  </div>
+  <div class="footer-links">
+    <a href="#">About</a>
+    <a href="#waitlist">Contact</a>
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+  </div>
+  <div class="footer-copy">© 2026 GradLeap. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
